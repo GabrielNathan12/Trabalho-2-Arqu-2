@@ -36,9 +36,9 @@ int main(){
 	__m256i _8BitsSat = _mm256_adds_epi16(vet_C,vet_D);
     
    //Realizando a subitracao com 8 bits sem saturacao
-    __m256i _8BitsSub = _mm256_sub_epi16(vet_A,vet_B);
+    __m256i _8BitsSub = _mm256_sub_epi16(vet_C,vet_D);
     //Realizando a subitracao com 8 bits sem saturacao
-	__m256i _8BitsSubSat = _mm256_subs_epi16(vet_A,vet_B);
+	__m256i _8BitsSubSat = _mm256_subs_epi16(vet_C,vet_D);
 
    //Declarando os ponteiros que carrega os respectivos valores de memória
 	short* somaNormal8Bits = (short*)& _8Bits;
