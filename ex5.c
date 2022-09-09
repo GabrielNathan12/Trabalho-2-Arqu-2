@@ -49,49 +49,49 @@ int main(){
    
     //Impressao dos resultados no console de epi16
     printf("\n Soma sem saturacao de epi16: \n");
-    for (int i = 0; i < 16; i++){
+    for (int i = 0; i < 8; i++){
 		
 		printf("%hi ", &somaNormal16Bits[i]);
 	}
 	
     printf("\n Soma com saturacao de epi16: \n");
-    for (int i = 0; i < 16; i++){
+    for (int i = 0; i < 8; i++){
 		printf("%hi ", &somaSaturada16Bits[i]);
 	}
 	
 
 	printf("\n Subitracao sem saturacao de epi16: \n");
-    for (int i = 0; i < 16; i++){
+    for (int i = 0; i < 8; i++){
 		printf("%hi ", &subiNormal16Bits[i]);
 		
 	}
 
 	printf("\n Subitracao com saturacao de epi16 : \n");
-    for (int i = 0; i < 16; i++){
+    for (int i = 0; i < 8; i++){
 		printf("%hi ", &subiSaturada16Bits[i]);
 	}
 
 	 //Impressao dos resultados no console de epi8
 	 printf("\n Soma sem saturacao epi8: \n");
-    for (int i = 0; i < 32; i++){
+    for (int i = 0; i < 16; i++){
 		
 		printf("%hi ", &somaNormal8Bits[i]);
 	}
 	
     printf("\n Soma com saturacao epi8: \n");
-    for (int i = 0; i < 32; i++){
+    for (int i = 0; i < 16; i++){
 		printf("%hi ", &somaSaturada8Bits[i]);
 	}
 	
 
 	printf("\n Subitracao sem saturacao epi8: \n");
-    for (int i = 0; i < 32; i++){
+    for (int i = 0; i < 16; i++){
 		printf("%hi ", &subiNormal8Bits[i]);
 		
 	}
 
 	printf("\n Subitracao com saturacao epi8: \n");
-    for (int i = 0; i < 32; i++){
+    for (int i = 0; i < 16; i++){
 		printf("%hi ", &subiSaturada8Bits[i]);
 	}
 
