@@ -37,7 +37,7 @@ int main(){
     printf("Entre com o valor de escalar : \n");
     scanf("%f",&esq);
 
-    // Faz o vetor 
+    // Faz o vetor escalar receber em todas as posicoes o valor do escalar
     for(int i = 0; i < 8 ; i++){
         vetEscalar[i] = esq;
     }
