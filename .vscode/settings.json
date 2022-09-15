@@ -1,6 +1,7 @@
 {
-    "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
+        "*.ijavanb": "java",
+        "string": "c",
         "ostream": "c"
     }
 }
