@@ -6,31 +6,6 @@
 #include <iostream>
 #include <cmath>
 
-const int NUMERO_DE_CARACTERES = 8;
-
-__m256 get_m256_da_palavra(std::string p ) {
-__m256i _m256i_palavra = _mm256_set_epi32( p[7], p[6], p[5], p[4], p[3], p[2], p[1], p[0] );
-return _mm256_cvtepi32_ps( _m256i_palavra );
-}
-
-std::string get_palavra_do_m256( __m256 palavra_em_m256 ) {
-__attribute__( ( aligned( 32 ) ) ) float saida[NUMERO_DE_CARACTERES];
-_mm256_store_ps( saida, palavra_em_m256 );
-
-char palavra[NUMERO_DE_CARACTERES];
-
-palavra[0] = int( saida[0] );
-palavra[1] = int( saida[1] );
-palavra[2] = int( saida[2] );
-palavra[3] = int( saida[3] );
-palavra[4] = int( saida[4] );
-palavra[5] = int( saida[5] );
-palavra[6] = int( saida[6] );
-palavra[7] = int( saida[7] );
-
-return palavra;
-}
-
 std::string criptografar(std::string texto) {
 	int numero_palavras = ceil(texto.length() / 8.0);
 	int texto_index = 0;
