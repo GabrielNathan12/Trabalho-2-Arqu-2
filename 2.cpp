@@ -6,54 +6,55 @@
 
 
 double** matrix_mult(double** a, double** b) {
-    __m256d* a_m256d = new __m256d[4];
+	__m256d* a_m256d = new __m256d[4];
 	__m256d* b_m256d = new __m256d[4];
-    __m256d* x_m256d = new __m256d[4];
+	__m256d* x_m256d = new __m256d[4];
 
-    for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++) {
 		a_m256d[i] = _mm256_set_pd(a[i][3], a[i][2], a[i][1], a[i][0]);
-        b_m256d[i] = _mm256_set_pd(b[3][i], b[2][i], b[1][i], b[0][i]);
+		b_m256d[i] = _mm256_set_pd(b[3][i], b[2][i], b[1][i], b[0][i]);
 	}
 
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            x_m256d[i] = _mm256_add_pd(x_m256d[i], _mm256_mul_pd(a_m256d[j], b_m256d[j]));
-        }
-    }
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			//x_m256d[i] = _mm256_add_pd(x_m256d[i], _mm256_mul_pd(a_m256d[j], b_m256d[j]));
+			x_m256d[i] = _mm256_fmadd_pd(a_m256d[j], b_m256d[j], x_m256d[i]);
+		}
+	}
 
-    double** x = new double*[4];
+	double** x = new double*[4];
 
-    for (int i = 0; i < 4; i++) {
-        x[i] = new double[4];
-        _mm256_storeu_pd (x[i], x_m256d[i]);
-    }
+	for (int i = 0; i < 4; i++) {
+		x[i] = new double[4];
+		_mm256_storeu_pd (x[i], x_m256d[i]);
+	}
 
-    return x;
+	return x;
 }
 
 
 int main() {
 
-    int a_m, a_n, b_m, b_n;
+	int a_m, a_n, b_m, b_n;
 
-    std::cout << "Entre as dimensões da matriz A: ";
-    std::cin >> a_m >> a_n;
-    std::cout << "Entre as dimensões da matriz B: ";
-    std::cin >> b_m >> b_n;
+	std::cout << "Entre as dimensões da matriz A: ";
+	std::cin >> a_m >> a_n;
+	std::cout << "Entre as dimensões da matriz B: ";
+	std::cin >> b_m >> b_n;
 
-    if (a_n != b_m) {
-    	std::cout << "Dimensões incompatíveis para multiplicação!";
-        return 1;
-    }
+	if (a_n != b_m) {
+		std::cout << "Dimensões incompatíveis para multiplicação!";
+		return 1;
+	}
 
-    if (a_m > 4 or a_n > 4 or b_m > 4 or b_n > 4) {
-        std::cout << "Dimensão máxima deve ser 4!";
-    	return 2;
-    }
+	if (a_m > 4 or a_n > 4 or b_m > 4 or b_n > 4) {
+		std::cout << "Dimensão máxima deve ser 4!";
+		return 2;
+	}
 
-    int x_m = a_n, x_n = b_m;
+	int x_m = a_n, x_n = b_m;
 
-    std::cout << "Entre com os valores da matriz A:\n";
+	std::cout << "Entre com os valores da matriz A:\n";
 
 	double** a = new double*[4];
 	for (int i = 0; i < 4; i++) {
@@ -66,9 +67,9 @@ int main() {
 		}
 	}
 
-    std::cout << "Entre com os valores da matriz B:\n";
+	std::cout << "Entre com os valores da matriz B:\n";
 
-    double** b = new double*[4];
+	double** b = new double*[4];
 	for (int i = 0; i < 4; i++) {
 		b[i] = new double;
 	}
@@ -79,17 +80,17 @@ int main() {
 		}
 	}
 
-    std::cout << "A x B =\n";
+	std::cout << "A x B =\n";
 
-    double** x = matrix_mult(a, b);
+	double** x = matrix_mult(a, b);
 
-    for (int i = 0; i < b_m; i++) {
-        std::cout << '\t';
+	for (int i = 0; i < b_m; i++) {
+		std::cout << '\t';
 		for (int j = 0; j < b_n; j++) {
 			std::cout << x[i][j] << ' ';
 		}
-        std::cout << '\n';
+		std::cout << '\n';
 	}
 
-    return 0;
+	return 0;
 }
