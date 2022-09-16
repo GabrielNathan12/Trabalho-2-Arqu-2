@@ -2,14 +2,14 @@
 
 ## Como executar:
 
-g++ 1.cpp -mavx2 -mfma -o 1.exe && ./1
+g++ 1.cpp -mavx2 -mfma -o 1 && ./1
 
-g++ 2.cpp -mavx2 -mfma -o 2.exe && ./2
+g++ 2.cpp -mavx2 -mfma -o 2 && ./2
 
-g++ 3.cpp -mavx2 -mfma -o 3.exe && ./3
+g++ 3.cpp -mavx2 -mfma -o 3 && ./3
 
-g++ 4.cpp -mavx2 -mfma -o 4.exe && ./4
+gcc 4.c -mavx2 -mfma -o 4 && ./4
 
-g++ 5.cpp -mavx2 -mfma -o 5.exe && ./5
+gcc 5.c -mavx2 -mfma -o 5 && ./5
 
-g++ 6.cpp -mavx2 -mfma -o 6.exe && ./6
+gcc 6.c -mavx2 -mfma -o 6 && ./6
